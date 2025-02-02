@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Fullscreen Extension Settings</title>
+  </head>
+  <body>
+    <h2>Fullscreen Toggle Settings</h2>
+    <label>
+      <input type="checkbox" id="hideIcon" />
+      Hide Fullscreen Icon
+    </label>
+    <script>
+      document.addEventListener("DOMContentLoaded", () => {
+        const checkbox = document.getElementById("hideIcon");
+
+        chrome.storage.sync.get("hideIcon", (data) => {
+          checkbox.checked = data.hideIcon;
+        });
+
+        checkbox.addEventListener("change", () => {
+          chrome.storage.sync.set({ hideIcon: checkbox.checked });
+        });
+      });
+    </script>
+  </body>
+</html>
